@@ -4,3 +4,39 @@ format: html
 editor: visual
 ---
 
+# Data exploration and summary in R
+
+```{r, message=F}
+# add libraries ----
+library(tidyverse)
+library(skimr)
+library(GGally)
+
+# check out the data ----
+names(diamonds)
+head(diamonds)
+tail(diamonds)
+dim(diamonds)
+summary(diamonds)
+skimr::skim(diamonds)
+```
+
+# Creating plots
+
+```{r}
+# create a pair plot ----
+ggpairs(diamonds, columns = c(1, 3, 7), ggplot2::aes(color = cut))
+
+# create a scatter plot ----
+ggplot(diamonds, aes(x = carat, y = price)) +
+   geom_point()
+
+# create a histogram ----
+ggplot(diamonds, aes(x = carat)) +
+  geom_histogram()
+
+# create a boxplot ----
+ggplot(diamonds, aes(x = clarity, y = price)) +
+   geom_boxplot()
+```
+
